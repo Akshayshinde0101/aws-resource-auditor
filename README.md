@@ -3,7 +3,7 @@
 A Bash script that finds resources in AWS that may be wasting money.
 
 ## What it checks (v0.1)
-- Running EC2 instances missing an Owner tag
+- Running EC2 instances missing an Owner tag (case sensitive)
 - Unattached EBS volumes (status = available)
 - S3 buckets (listed only)
 
@@ -19,7 +19,10 @@ A Bash script that finds resources in AWS that may be wasting money.
 chmod +x aws_audit.sh
 ./aws_audit.sh
 ```
-The report is saved in ./reports/audit_<date>.txt.
+The report is saved in ./reports/audit_<date>.txt. 
+
+## Sample output
+![Audit report output](screenshots/audit_output.png)
 
 ## limitations
 - Checks only one region (ap-south-1)
