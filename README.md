@@ -3,7 +3,7 @@
 A Bash script that finds resources in AWS that may be wasting money.
 
 ## What it checks (v0.1)
-- Running EC2 instances that have no tags
+- Running EC2 instances missing an Owner tag
 - Unattached EBS volumes (status = available)
 - S3 buckets (listed only)
 

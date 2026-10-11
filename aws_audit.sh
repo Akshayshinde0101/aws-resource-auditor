@@ -8,10 +8,10 @@ REPORT="$REPORT_DIR/audit_$TODAY.txt"
 mkdir -p $REPORT_DIR
 
 audit_ec2() {
-  echo "--- Running EC2 instances with NO tags ---"
+  echo "--- Running EC2 instances with NO Owner tag ---"
   aws ec2 describe-instances --region $REGION \
     --filters Name=instance-state-name,Values=running \
-    --output json | jq -r '.Reservations[].Instances[] | select(.Tags == null) | .InstanceId'
+    --output json | jq -r '.Reservations[].Instances[] | select((.Tags // []) | map(.Key) | index("Owner") | not) | .InstanceId'
 }
 
 audit_ebs() {
